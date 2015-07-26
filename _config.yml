@@ -111,7 +111,7 @@ theme: formula
 ## Docs: http://zespia.tw/hexo/docs/deploy.html
 deploy:
   type: git
-  #repo: https://github.com/bubkoo/bubkoo.github.com.git
+  repo: https://github.com/bubkoo/bubkoo.github.com.git
   branch: master
 
 
