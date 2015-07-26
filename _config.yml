@@ -1,0 +1,136 @@
+# Hexo Configuration
+## Docs: http://hexo.io/docs/configuration.html
+## Source: https://github.com/hexojs/hexo/
+
+
+# Site
+title      : bubkoo
+subtitle   : # CUCKOO USHERS SPRING IN
+description: bubkoo's blog
+keywords   :
+author     : bubkoo
+email      : bubkoo@163.com
+language   : zh-CN
+timezone   :
+
+
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: http://bubkoo.com/
+root: /
+permalink: :year/:month/:day/:title/
+permalink_defaults:
+
+
+# Directory
+source_dir  : source
+public_dir  : public
+tag_dir     : tags
+archive_dir : archives
+category_dir: categories
+code_dir    : downloads/code
+i18n_dir    : :lang
+# 设置忽略渲染的 page（source文件夹下除开 _draft 和 _post 文件夹之外的所有文件默认都是作为 page 来渲染）
+skip_render:
+  # 忽略 demo 文件夹的 HTML、CSS、JS 文件
+  - demo/**/*.+(js|css|html|htm)
+
+# Writing
+new_post_name : :title.md  # File name of new posts
+default_layout: post       #
+titlecase     : false      # Transform title into titlecase
+external_link : true       # Open external links in new tab
+filename_case : 1          # Transform filenames to 1 lower case; 2 upper case
+render_drafts : false
+post_asset_folder: false
+relative_link    : false  # Make links relative to the root folder
+future: true              # Display future posts
+highlight:
+  enable     : true
+  line_number: true
+  tab_replace:
+
+
+# Category & Tag
+default_category: uncategorized
+category_map:
+tag_map:
+
+
+# Date / Time format 日期/时间格式
+## Hexo uses Moment.js to parse and display date
+## You can customize the date format as defined in
+## http://momentjs.com/docs/#/displaying/format/
+date_format: YYYY-MM-DD
+time_format: HH:mm:ss
+
+
+# Pagination
+## Set per_page to 0 to disable pagination
+per_page: 10
+pagination_dir: page
+
+
+# Extensions
+## Plugins: http://hexo.io/plugins/
+feed:
+  type : atom      # Feed type. (atom/rss2)
+  path : atom.xml  # Feed path. (Default: atom.xml/rss2.xml)
+  limit: false     # Maximum number of posts in the feed (Use 0 or false to show all posts)
+
+sitemap:
+    path: sitemap.xml # Sitemap path. (Default: sitemap.xml)
+
+html_minifier:
+  exclude:        # Exclude files
+  # Other options. See https://github.com/kangax/html-minifier#options-quick-reference
+
+# Minify JavaScript files with UglifyJS
+uglify:
+  mangle: true
+  output:
+  compress:
+  exclude:
+    - '**/demo/**/*.*'
+    - '**/js/lib/*.*'
+    - '**/fancybox/**/*.*'
+    - '**/js/**/*.*'
+
+clean_css:
+  exclude:
+    - '**/*.*'
+
+
+# Themes
+## Themes: http://hexo.io/themes/
+theme: formula
+#theme: flight
+
+
+# Deployment
+## Docs: http://zespia.tw/hexo/docs/deploy.html
+deploy:
+  type: git
+  repo: https://github.com/bubkoo/bubkoo.github.com.git
+  branch: master
+
+
+# 下面的配置从阅读代码而来
+archive_generator:
+  yearly  : true
+  monthly : true
+  per_page: 0     # 不分页
+
+category_generator:
+  per_page: 0
+
+tag_generator:
+  per_page: 0
+
+server:
+  ip  : 127.0.0.1
+  log : true
+  port: 4000
+
+marked:
+  demo: true

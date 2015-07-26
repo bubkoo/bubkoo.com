@@ -1,0 +1,13 @@
+.idea
+.DS_Store
+Thumbs.db
+node_modules/
+npm-debug.json
+*.log
+
+.deploy_git
+.deploy
+inspiration-images
+public
+themes
+db.json

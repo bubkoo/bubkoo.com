@@ -1,0 +1,122 @@
+body {
+  font-family: Ubuntu, sans-serif;
+  font-weight: 400;
+  color: #4b4539;
+  background-color: #e9e5d9;
+  padding: 7.5em 0 5em; /* 120 80 */
+}
+
+.container {
+  width: 100%;
+  max-width: 40em; /* 640 */
+  padding: 0 1.25em; /* 20 */
+  margin: 0 auto;
+}
+
+.header {
+  width: 100%;
+  height: 5em; /* 80 */
+  text-align: center;
+  background-color: #fff;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+
+  -webkit-box-shadow: 0 0.063em 0.25em rgba(37, 50, 55, .25); /* 1 4 */
+  box-shadow: 0 0.063em 0.25em rgba(37, 50, 55, .25); /* 1 4 */
+
+  -webkit-transition-duration: .3s;
+  transition-duration: .3s;
+
+  -webkit-transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+  transition-timing-function: cubic-bezier(0.215, 0.610, 0.355, 1.000);
+
+  -webkit-transition-property: -webkit-transform;
+  transition-property: transform;
+}
+
+.header--hidden {
+  -webkit-transform: translateY(-100%);
+  -ms-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+
+.header .container {
+  height: 100%;
+  overflow: hidden;
+}
+
+.header nav {
+  height: 100%;
+  display: table;
+  float: right;
+}
+
+.header ul {
+  height: 100%;
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.header li {
+  float: left;
+  display: inline-block;
+}
+
+.header a {
+  height: 2.5em; /* 40 */
+  text-transform: uppercase;
+  line-height: 2.5em; /* 40 */
+  color: #fff;
+  display: block;
+  background-color: #867d6d;
+  padding: 0 0.625em; /* 10 */
+  text-decoration: none;
+}
+
+.header a:hover,
+.header a:focus {
+  background-color: #4b4539;
+  text-decoration: none;
+}
+
+.header a:active,
+.header .is-selected a {
+  background-color: #d3004f;
+}
+
+.header li:not(:last-child) a {
+  border-right: 1px solid #b1a898;
+}
+
+.header span {
+  display: none;
+}
+
+.content {
+}
+
+.content > *:not(:last-child) {
+  margin-bottom: 1.875rem; /* 30 */
+}
+
+.content h1 {
+  font-size: 3.125em; /* 50 */
+  font-weight: 300;
+  text-align: center;
+}
+
+.content p {
+  line-height: 1.625em; /* 26 */
+}
+
+@media screen and ( max-width: 30em ) /* 480 */ {
+  .header span {
+    display: inline;
+  }
+
+  .header b {
+    display: none;
+  }
+}
