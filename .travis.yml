@@ -20,9 +20,9 @@ before_install:
   - git config --global user.email bubkoo@163.com
   # Clone themes
   - git clone https://github.com/bubkoo/hexo-theme-formula.git themes/formula
-  #- git clone https://github.com/bubkoo/hexo-theme-flight.git themes/flight
+  - git clone https://github.com/bubkoo/hexo-theme-flight.git themes/flight
   # Clone the repository
-  #- git clone https://github.com/bubkoo/bubkoo.github.com.git .deploy_git
+  - git clone https://github.com/bubkoo/bubkoo.github.com.git .deploy_git
 
 install:
   - npm install hexo-cli@0.1.4 -g
