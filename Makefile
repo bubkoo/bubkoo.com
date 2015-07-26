@@ -7,7 +7,7 @@ deploy:
 	cd .deploy
 	git add -A .
 	git commit -m "%Y-%m-%d %H:%M:%S"
-	git push
+	git push origin master
 
 echo:
 	echo $(now)
