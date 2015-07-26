@@ -25,7 +25,7 @@ before_install:
   #- git clone https://github.com/bubkoo/bubkoo.github.com.git .deploy_git
 
 install:
-  - npm install hexo-cli -g
+  - npm install hexo-cli@0.1.4 -g
   - npm install
 
 script:
