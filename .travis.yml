@@ -17,13 +17,16 @@ before_script:
 script:
   - hexo clean
   - hexo generate
-  - hexo deploy
 
 after_success:
   - cd .deploy
   - git add -A .
   - git commit -m "update from travis"
   - git push --quiet
+
+branches:
+  only:
+    - master
 
 env:
   global:
