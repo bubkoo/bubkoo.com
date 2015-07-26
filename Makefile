@@ -6,7 +6,7 @@ copy:
 deploy:
 	cd .deploy
 	git add -A .
-	git commit -m "$(now)"
+	git commit -m "%Y-%m-%d %H:%M:%S"
 	git push
 
 echo:
