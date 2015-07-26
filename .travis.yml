@@ -16,8 +16,8 @@ before_script:
   - git clone https://$GH_TOKEN@github.com/bubkoo/bubkoo.github.com.git .deploy
 
 script:
-#  - hexo clean
-#  - hexo generate
+  - hexo clean
+  - hexo generate
   # deploy
   - cd .deploy
   - git add -A .
