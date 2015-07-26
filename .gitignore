@@ -5,6 +5,8 @@ node_modules/
 npm-debug.json
 *.log
 
+source/about
+source/resume
 .deploy_git
 .deploy
 inspiration-images
