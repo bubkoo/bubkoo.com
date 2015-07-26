@@ -11,3 +11,5 @@ inspiration-images
 public
 themes
 db.json
+ssh_key
+ssh_key.pub
