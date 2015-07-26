@@ -7,7 +7,7 @@ deploy:
 	cp -a public/ .deploy/
 	cd .deploy
 	git add -A .
-	git commit -m "%Y-%m-%d %H:%M:%S"
+	git commit -m $(now)
 	git status
 	#git push origin master
 
