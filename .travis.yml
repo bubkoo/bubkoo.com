@@ -26,8 +26,8 @@ before_script:
   # Clone the repository
   - git clone https://github.com/bubkoo/bubkoo.github.com.git .deploy_git
   # Set Git config
-  - git config user.name  "bubkoo"
-  - git config user.email "bubkoo@163.com"
+  - git config --global user.name  "bubkoo"
+  - git config --global user.email "bubkoo@163.com"
 
 script:
   - hexo clean
