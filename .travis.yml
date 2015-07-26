@@ -18,7 +18,7 @@ before_script:
 script:
   - hexo clean
   - hexo generate
-  - deploy
+  - hexo deploy
 #  - cd .deploy
 #  - git add -A .
 #  - git commit -m "update from travis"
