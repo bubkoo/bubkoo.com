@@ -1,0 +1,45 @@
+language: node_js
+
+node_js:
+  - 0.10
+
+before_install:
+  # Decrypt the private key
+  - openssl aes-256-cbc -K $encrypted_0c2158f33fa0_key -iv $encrypted_0c2158f33fa0_iv -in .travis/ssh_key.enc -out ~/.ssh/id_rsa -d
+  # Set the permission of the key
+  - chmod 600 ~/.ssh/id_rsa
+  # Start SSH agent
+  - eval $(ssh-agent)
+  # Add the private key to the system
+  - ssh-add ~/.ssh/id_rsa
+  # Copy SSH config
+  - cp .travis/ssh_config ~/.ssh/config
+
+install:
+  - npm install hexo-cli@0.1.4 -g
+  - npm install
+
+before_script:
+  # Set Git config
+  - git config --global user.name  "bubkoo"
+  - git config --global user.email "bubkoo@163.com"
+  # Clone themes
+  - git clone https://github.com/bubkoo/hexo-theme-formula.git themes/formula
+  - git clone https://github.com/bubkoo/hexo-theme-flight.git themes/flight
+  # Clone the repository
+  - git clone https://github.com/bubkoo/bubkoo.github.com.git .deploy
+
+script:
+  - hexo clean
+  - hexo generate
+  - hexo deploy
+
+after_success:
+  - cd .deploy
+  - git add -A .
+  - git commit -m "update from travis"
+  - git push --quiet
+
+branches:
+  only:
+    - master
