@@ -1,5 +1,5 @@
 dir = .deploy_git
-msg = Site updated by CI: `date +'%Y-%m-%d %H:%M:%S'`
+msg = Update from travis: `date +'%Y-%m-%d %H:%M:%S'`
 
 update:
 	cd $(dir) && git rm -rf *
