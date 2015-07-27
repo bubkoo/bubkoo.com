@@ -231,15 +231,58 @@ Pseudo elements(伪元素)是利用 CSS 制作几何形状的重要工具，大�
 
 **缺点：**
 
-- 如果想要实现文字环绕图片的效果，需要结合使用 `clip-path` 和 `shape-outside` 这两个属性。
+- 实现文字环绕图片效果需要结合使用 `clip-path` 和 `shape-outside` 这两个属性。
 
 ## SVG
 
+使用 SVG（可缩放的矢量图形）可以制作出任何你想要的图形，如 [console](http://www.polygon.com/a/ps4-review)、logo、图标、社会媒体按钮等。
 
+本文并不会教你[如何使用 SVG](https://css-tricks.com/using-svg/)，因为涉及太多的最佳实践和技术细节。通常，如果一个项目需要使用到图形，我的首选肯定是 SVG，因为这意味着更少的奇怪的不可预知的代码，也意味着如果设计师需要对图形进行润色，他们可以随时编辑这些形状。
+
+如果想详细了解 SVG，这里有一篇关于 SVG 的[汇总文章](https://css-tricks.com/mega-list-svg-information/)。
+
+**优点：**
+
+- 较小的文件大小；
+- 可以在任何流行的图形编辑器中编辑它们；
+- 不熟悉 CSS 和 JavaScript 的人也可以制作它们；
+- 无失真缩放；
+- 广泛的浏览器支持和大量的兼容方案；
+- 可以将它们添加到页面标签中，并可以[支持屏幕阅读器](http://www.sitepoint.com/tips-accessible-svg/)；
+- 支持 CSS 和 JavaScript 动画。
+
+**缺点：**
+
+- 如果它们是非常简单的形状，你可以使用纯 CSS 的方案来实现。
 
 ## canvas
 
+使用 `canvas` 元素来制作图表和互动式游戏非常有用，因为它的设计初衷就是用来绘制图表。`canvas` 绘图教程超出了本文的范围，这里你需要了解的是用 `canvas` 可以做什么，下面是使用 `canvas` 来绘制一个正方形：
+
+```javascript
+var canvas = document.querySelector('canvas');
+var ctx = canvas.getContext('2d');
+ctx.fillStyle = '#0074d9';
+ctx.fillRect(0, 0, 100, 100);
+```
+<p class="fully-content"><iframe src="//codepen.io/css-tricks/embed/194842e7086d6b740ba102fd3be9c510?height=268&default-tab=result" scrolling="no" frameborder="0" allowtransparency="true" allowfullscreen="true" height="268"></iframe></p>
+
+对每个 `canvas`，我们需要给 `.getContext()` 方法传递 `"2d"` 这个字符串参数，目前还没有 3d 上下文，也许将来会支持。
+
+在 MDN 上有一系列关于 [canvas 的教程](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial)。
+
+
+**优点：**
+
+- 制作游戏和交互式图表。
+
+**缺点：**
+
+- 依赖 JavaScript。
+
 ## 总结
+
+选择一种制作图形的方式，就与选择一种垂直对齐方式一样：没有最好的方案，只有最适合项目的方案。在我的项目开发中，我并没有只选择其中一种技术，而是将这些方式使用在最适合它们的位置，同时注意保持完善的文档，并且不给其他开发人员造成困扰。
 
 ## 参考资源
 
