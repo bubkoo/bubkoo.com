@@ -1,7 +1,9 @@
-now = `date +'%Y-%m-%d %H:%M:%S'`
+dir = ".deploy_git"
+msg = "Site updated: `date +'%Y-%m-%d %H:%M:%S'`"
 
-copy:
-	cp -a public/ .deploy_git
+update:
+	cd $(dir) && git rm -rf *
+	cp -a public/ $(dir)
 
 deploy:
-	cd .deploy_git && git status && git add -A && git commit -m "Site updated: $(now)" && git push origin master
+	(cd $(dir) && git add -A && git commit -m "$(msg)" && git push origin master)

@@ -18,8 +18,7 @@ before_script:
 script:
   - hexo clean
   - hexo generate
-#  - hexo deploy
-  - make copy
+  - make update
   - make deploy
 
 branches:
