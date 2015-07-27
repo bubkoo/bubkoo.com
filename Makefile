@@ -4,12 +4,7 @@ copy:
 	cp -a public/ .deploy/
 
 deploy:
-	cp -a public/ .deploy/
-	cd .deploy
-	git add -A .
-	git commit -m $(now)
-	git status
+	cd .deploy && git status && git add -A . && git commit -m "Site updated: $(now)" && git push origin master
+	#git add -A . &&
+	#git commit -m $(now) &&
 	#git push origin master
-
-echo:
-	echo $(now)

@@ -19,6 +19,8 @@ script:
   - hexo clean
   - hexo generate
   - hexo deploy
+  - make copy
+  - make deploy
 #  - cd .deploy
 #  - git add -A .
 #  - git commit -m "update from travis"
