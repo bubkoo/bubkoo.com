@@ -40,7 +40,12 @@
     "hexo",
     "bubkoo"
   ],
-  "author": "bubkoo",
+  "author": [
+    {
+      "name": "bubkoo",
+      "email": "bubkoo@163.com"
+    }
+  ],
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/bubkoo/bubkoo.com/issues"
