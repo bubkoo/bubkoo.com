@@ -1,7 +1,7 @@
 .idea
 .DS_Store
 Thumbs.db
-node_modules/
+node_modules
 npm-debug.json
 *.log
 
