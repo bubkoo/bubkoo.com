@@ -361,4 +361,4 @@ python -m SimpleHTTPServer
  
 <p class="j-quote">参考原文：[ES6 In Depth: Using ES6 today with Babel and Broccoli](https://hacks.mozilla.org/2015/06/es6-in-depth-babel-and-broccoli/)
 原文作者：[Jason Orendorff](https://hacks.mozilla.org/author/jorendorffmozillacom/) 
-原文日期：2015-07-17 21:38</p>
+原文日期：2015-06-17 21:38</p>

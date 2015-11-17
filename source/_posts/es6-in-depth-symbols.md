@@ -195,4 +195,4 @@ Firefox 36 和 Chrome 38 实现了 Symbol，并且 Firefox 的实现者是本文
 
 <p class="j-quote">参考原文：[ES6 In Depth: Symbols](https://hacks.mozilla.org/2015/06/es6-in-depth-symbols/)
 原文作者：[Jason Orendorff](https://hacks.mozilla.org/author/jorendorffmozillacom/) 
-原文日期：2015-07-11 23:13</p>
+原文日期：2015-06-11 23:13</p>
