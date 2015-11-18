@@ -76,17 +76,49 @@ keywords:
 <link rel="subresource" href="styles.css">
 ```
 
-根据 [Chrome 文档](https://www.chromium.org/spdy/link-headers-and-server-hint/link-rel-subresource)，其工作原理是：
+根据 [Chrome 文档](https://www.chromium.org/spdy/link-headers-and-server-hint/link-rel-subresource)：
 
-> 
+> `rel=prefetch` 为将来的页面提供了一种低优先级的资源预加载方式，而 `rel=subresource` 为当前页面提供了一种高优先级的资源预加载。
+
+所以，如果资源是当前页面必须的，或者资源需要尽快可用，那么最好使用 `subresource` 而不是 `prefetch`。
 
 
+## 预渲染 Prerender
 
-## Prerendering pages
+这是一个核武器，因为 `prerender` 可以预先加载文档的所有资源：
 
-## Future option: Preloading
+```html
+<link rel="prerender" href="http://example.com">
+```
+Steve Souders 在他的[一篇文章](http://www.stevesouders.com/blog/2013/11/07/prebrowsing/)中写到：
+
+> 这类似于在一个隐藏的 tab 页中打开了某个链接 -- 将下载所有资源、创建 DOM 结构、完成页面布局、应用 CSS 样式和执行 JavaScript 脚本等。当用户真正访问该链接时，隐藏的页面就切换为可见，使页面看起来就是瞬间加载完成一样。Google 搜索在其即时搜索页面中已经应用该技术多年了，微软也宣称将在 IE11 中支持该特性。
+
+需要注意的是不要滥用该特性，当你知道用户一定会点击某个链接时才可以进行预渲染，否则浏览器将无条件地下载所有预渲染需要的资源。
+
+更多相关讨论：
+
+> 所有预加载技术都存在一个潜在的风险：对资源预测错误，而预加载的开销（抢占 CPU 资源，消耗电池，浪费带宽等）是高昂的，所以必须谨慎行事。虽然很难确定用户下一步将访问哪些资源，但高可信的场景确实存在：
+- 如果用户完成一个带有明显结果的搜索，那么结果页面很可能会被加载
+- 如果用户进入到登陆页面，那么登陆成功的页面很可能会被加载
+- 如果用户阅读一个多页的文章或访问一个分页的结果集，那么下一页很可能会被加载
+
+最后，使用 [Page Visibility API](http://www.w3.org/TR/page-visibility/) 可以防止页面真正可见前被执行。
+
+
+## Preload
+
+`preload` 是一个新规范，与 `prefetch` 不同（可能被忽略）的是，浏览器一定会预加载该资源：
+
+```html
+<link rel="preload" href="image.png">☄
+```
+
+虽然该规范还没有被所有浏览器兼容，但其背后的思想还是非常有意思的。
 
 ## 总结
+
+预测用户下一步将访问哪些资源是困难的，需要进行大量的测试，但是这带来的性能提升是明显的。如果我们愿意尝试这些预获取技术，一定会显著提升用户的体验。
 
 ## 深入阅读
 
