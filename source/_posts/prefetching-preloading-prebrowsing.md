@@ -1,4 +1,4 @@
-title: Prefetching、Preloading 和 Prebrowsing
+title: 前端性能优化 - 资源预加载
 tags:
   - performance
   - prefetching
@@ -13,15 +13,15 @@ updated: 2015-11-19 00:29:36
 keywords:
 ---
 
-当提到前端性能时，我们首先会联想到文件的合并、压缩，文件缓存和开启服务器端的 gzip 压缩等，这使得页面加载更快，用户可以尽快使用我们的 Web 应用来达到他们的目标。
+当提到前端性能优化时，我们首先会联想到文件的合并、压缩，文件缓存和开启服务器端的 gzip 压缩等，这使得页面加载更快，用户可以尽快使用我们的 Web 应用来达到他们的目标。
 
-资源预获取是另一个性能优化技术，我们可以使用该技术来预先告知浏览器某些资源可能在将来会被使用到。
+资源预加载是另一个性能优化技术，我们可以使用该技术来预先告知浏览器某些资源可能在将来会被使用到。
 
 引用 [Patrick Hamann](https://twitter.com/patrickhamann) 的[解释](http://patrickhamann.com/workshops/performance/tasks/2_Critical_Path/2_3.html)：
 
-> 预获取是浏览器对将来可能被使用资源的一种暗示，一些资源可以在当前页面使用到，一些可能在将来的某些页面中被使用。作为开发人员，我们比浏览器更加了解我们的应用，所以我们可以对我们的核心资源使用该技术。
+> 预加载是浏览器对将来可能被使用资源的一种暗示，一些资源可以在当前页面使用到，一些可能在将来的某些页面中被使用。作为开发人员，我们比浏览器更加了解我们的应用，所以我们可以对我们的核心资源使用该技术。
 
-这种做法曾经被称为 *prebrowsing*，但这并不是一项单一的技术，可以细分为几个不同的技术：`dns-prefetch`、`subresource` 和标准的 `prefetch`、`preconnect`、`prerender`。
+这种做法曾经被称为 *prebrowsing*，但这并不是一项单一的技术，可以细分为几个不同的技术：`DNS-prefetch`、`subresource` 和标准的 `prefetch`、`preconnect`、`prerender`。
 
 <!--more-->
 
