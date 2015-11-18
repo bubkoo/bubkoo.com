@@ -6,8 +6,6 @@ tags:
   - prebrowsing
 categories:
   - CSS
-photos:
-  - some photos
 date: 2015-11-19 00:29:36
 updated: 2015-11-19 00:29:36
 keywords:
