@@ -28,23 +28,24 @@
   },
   "devDependencies": {},
   "scripts": {
+    "start": "hexo server",
+    "clean": "hexo clean",
+    "generate": "hexo generate",
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/bubkoo/bubkoo.com.git"
   },
   "keywords": [
     "hexo",
     "bubkoo"
   ],
-  "author": [
-    {
-      "name": "bubkoo",
-      "email": "bubkoo@163.com"
-    }
-  ],
+  "author": {
+    "name": "bubkoo",
+    "email": "bubkoo.wy@gmail.com"
+  },
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bubkoo/bubkoo.com.git"
+  },
   "bugs": {
     "url": "https://github.com/bubkoo/bubkoo.com/issues"
   },
