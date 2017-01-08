@@ -4,8 +4,6 @@ tags:
   - Quality
 categories:
   - JavaScript
-photos:
-  - some photos
 date: 2016-09-08 21:20:28
 updated: 2016-09-08 21:20:28
 keywords:
