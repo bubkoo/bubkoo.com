@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hypercube</title>
+    <style>
+        body {
+            padding: 0;
+            margin: 0;
+            height: 1000px;
+        }
+
+        #splash {
+            overflow: hidden;
+            background-color: #425565;
+            background: url(./bg.jpg);
+            background-size: cover;
+            background-position: center;
+            height: 360px;
+            padding: 0;
+            margin: 0;
+        }
+
+        #logoWrap {
+            margin-top: 50px;
+            text-align: center;
+            position: relative;
+        }
+
+        #logoCanvas {
+            margin-left: auto;
+            margin-right: auto;
+            pointer-events: none;
+            z-index: 0;
+            position: absolute;
+        }
+
+        #logoText {
+            max-width: 100%;
+            color: #FFF;
+        }
+    </style>
+</head>
+<body>
+<div id="splash">
+    <div id="logoWrap">
+        <canvas id="logoCanvas"></canvas>
+        <div id="logoText">Hypercube</div>
+    </div>
+</div>
+<script>
+    var dimensions = {
+
+        width: 0,
+        height: 0,
+
+        getWidth: function () {
+            if (window.innerWidth) {
+                return window.innerWidth;
+            }
+            if (document.documentElement && document.documentElement.clientHeight) {
+                return document.documentElement.clientWidth;
+            }
+            if (document.body) {
+                return document.body.clientWidth;
+            }
+            return 0;
+        },
+
+        getHeight: function () {
+            if (window.innerWidth) {
+                return window.innerHeight;
+            }
+            if (document.documentElement && document.documentElement.clientHeight) {
+                return document.documentElement.clientHeight;
+            }
+            if (document.body) {
+                return document.body.clientHeight;
+            }
+            return 0;
+        },
+
+        update: function () {
+            var width  = this.getWidth()
+            var height = this.getHeight()
+            if (width != this.width || height != this.height) {
+                this.width  = width
+                this.height = height
+                return true
+            }
+            return false
+        }
+    }
+</script>
+<script>
+    var mouse = {
+        x: 0,
+        y: 0,
+        direction: 0,
+
+        start: {
+            x: 0,
+            y: 0
+        },
+
+        dragging: false,
+
+        set: function (x, y) {
+            mouse.x         = x
+            mouse.y         = y
+            mouse.direction = Math.atan2(y - mouse.start.y, x - mouse.start.x)
+        },
+
+        coords: function (e) {
+            // e.preventDefault();
+            if (e.pageX) {
+                mouse.set(e.pageX, e.pageY)
+            } else if (e.offsetX) {
+                mouse.set(e.offsetX, e.offsetY)
+            } else if (e.layerX) {
+                mouse.set(e.layerX, e.layerY)
+            } else if (e.targetTouches && e.targetTouches.length > 0) {
+                mouse.set(e.targetTouches[0].pageX, e.targetTouches[0].pageY)
+            }
+        },
+
+        down: function (e) {
+            mouse.coords(e)
+            mouse.start.x  = mouse.x
+            mouse.start.y  = mouse.y
+            mouse.dragging = true
+        },
+
+        up: function (e) {
+            mouse.coords(e)
+            mouse.dragging = false
+        }
+    }
+
+    document.addEventListener("touchstart", mouse.down, true);
+    document.addEventListener("touchend", mouse.up, true);
+    document.addEventListener("touchmove", mouse.coords, true);
+
+    document.addEventListener("mousedown", mouse.down, true);
+    document.addEventListener("mouseup", mouse.up, true);
+    document.addEventListener("mousemove", mouse.coords, true);
+</script>
+<script>
+
+    var splash     = document.getElementById('splash');
+    var logoWrap   = document.getElementById('logoWrap');
+    var logoText   = document.getElementById('logoText');
+    var logoCanvas = document.getElementById('logoCanvas');
+    var ctx        = logoCanvas.getContext('2d');
+    var color      = 'white';
+    var lastTime;
+    var freeze;
+
+
+    function fixDim() {
+
+        dimensions.update()
+
+        var displayWidth  = Math.sqrt(dimensions.width) * 18//dimensions.width > 900 ? 900 : 450
+        var displayHeight = displayWidth * 4 / 15
+
+        var bounds    = splash.getBoundingClientRect()
+        var bottom    = bounds.top + bounds.height
+        var fadeStart = bounds.height / 2
+
+        logoWrap.style.opacity = Math.max(Math.min((bottom - fadeStart) / fadeStart, 1), 0)
+
+        logoText.style.width = displayWidth + 'px'
+
+        if (!freeze) {
+            logoCanvas.width        = displayHeight * window.devicePixelRatio
+            logoCanvas.height       = displayHeight * window.devicePixelRatio
+            logoCanvas.style.width  = displayHeight + 'px'
+            logoCanvas.style.height = displayHeight + 'px'
+        }
+    }
+
+    addEventListener('scroll', fixDim)
+
+    var gh = .12;
+
+    function main(time) {
+
+        fixDim()
+
+        ctx.clearRect(0, 0, logoCanvas.width, logoCanvas.height)
+
+        var t = time / 10000
+
+        ctx.strokeStyle = ctx.fillStyle = color
+
+        var m = tesseractWithRotation(t, t * 2, t * 3, mouse.x / 100, mouse.y / 100, 0)
+
+        drawTesseract(ctx, m, {
+            x: logoCanvas.width / 2,
+            y: logoCanvas.height / 2,
+            size: gh * logoCanvas.height,
+            lineWidth: 2,
+        })
+
+        lastTime = time
+        requestAnimationFrame(main)
+    }
+
+
+    requestAnimationFrame(function init(t) {
+        fixDim()
+        lastTime = t
+        requestAnimationFrame(main)
+    });
+</script>
+<script>
+    function app1(p, a, c1, c2) {
+
+        var l = Math.cos(a) * p[c1] + Math.sin(a) * p[c2]
+        var k = -Math.sin(a) * p[c1] + Math.cos(a) * p[c2]
+        p[c1] = l
+        p[c2] = k
+    }
+
+    function app2(p, a, c1, c2) {
+
+        var l = Math.cos(a) * p[c1] - Math.sin(a) * p[c2]
+        var k = Math.sin(a) * p[c1] + Math.cos(a) * p[c2]
+        p[c1] = l
+        p[c2] = k
+    }
+
+    var _edges
+
+    function tesseractedges() {
+        if (!_edges) {
+            var m        = tesseractWithRotation(0, 0, 0, 0, 0, 0)
+            var edges    = []
+            var indicies = ['x', 'y', 'z', 'w']
+            for (var i = 0; i < m.length; i++) {
+                for (var j = i + 1; j < m.length; j++) {
+                    var count = 0
+                    for (var k = 0; k < 4; k++) {
+                        if (m[i][indicies[k]] === m[j][indicies[k]]) {
+                            count++
+                        }
+                    }
+                    ;
+                    if (count === 3) {
+                        edges.push([i, j])
+                    }
+                }
+            }
+            _edges = edges
+        }
+        return _edges
+    }
+
+    function tesseractWithRotation(a, b, c, d, e, f) {
+        var verticies = []
+        for (var i = 0; i < 16; i++) {
+            var p = {
+                x: (i & 1) * 2 - 1,
+                y: ((i >> 1) & 1) * 2 - 1,
+                z: ((i >> 2) & 1) * 2 - 1,
+                w: ((i >> 3) & 1) * 2 - 1
+            }
+            app1(p, a, 'x', 'y')
+            app1(p, b, 'y', 'z')
+            app1(p, c, 'x', 'w')
+            app2(p, d, 'x', 'z')
+            app2(p, e, 'y', 'w')
+            app2(p, f, 'z', 'w')
+            verticies.push(p)
+        }
+        return verticies
+    }
+
+    function project(point, size) {
+        return {
+            x: (point.x + Math.SQRT2 * point.z) * size,
+            y: (point.y + Math.SQRT2 * point.w) * size
+        }
+    }
+
+    function drawTesseract(ctx, tesseract, opts) {
+
+        var edges = tesseractedges()
+
+        for (var i = 0; i < tesseract.length; i++) {
+            var proj = project(tesseract[i], opts.size)
+            ctx.beginPath()
+            ctx.arc(proj.x + opts.x, proj.y + opts.y, opts.corner_radius, 0, 2 * Math.PI)
+            ctx.fill()
+        }
+
+        ctx.lineWidth = opts.lineWidth || 1
+        ctx.beginPath()
+
+        for (var i = 0; i < edges.length; i++) {
+            var v1 = project(tesseract[edges[i][0]], opts.size),
+                v2 = project(tesseract[edges[i][1]], opts.size)
+            ctx.moveTo(v1.x + opts.x, v1.y + opts.y)
+            ctx.lineTo(v2.x + opts.x, v2.y + opts.y)
+        }
+
+        ctx.stroke()
+    }
+</script>
+</body>
+</html>
