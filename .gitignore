@@ -1,17 +1,15 @@
 .idea
 .DS_Store
-Thumbs.db
 node_modules
 npm-debug.json
 *.log
 
-source/about
-source/resume
 .deploy_git
 .deploy
+.source
+source/about
+source/resume
 inspiration-images
 public
 themes
 db.json
-ssh_key
-ssh_key.pub
