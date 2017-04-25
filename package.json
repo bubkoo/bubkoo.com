@@ -27,7 +27,7 @@
     "hexo-renderer-less": "^0.1.3",
     "hexo-renderer-marked": "^0.2.4",
     "hexo-server": "^0.1.2",
-    "hexo-toc": "^1.0.6",
+    "hexo-toc": "^1.0.8",
     "hexo-uglify": "0.0.3"
   },
   "devDependencies": {},
