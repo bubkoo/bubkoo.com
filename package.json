@@ -13,7 +13,7 @@
     "hexo-deployer-git": "0.0.4",
     "hexo-filter-fenced-code": "0.0.5",
     "hexo-filter-flowchart": "^1.0.4",
-    "hexo-filter-sequence": "^1.0.2",
+    "hexo-filter-sequence": "^1.0.3",
     "hexo-filter-sub": "^1.0.0",
     "hexo-filter-sup": "^1.0.0",
     "hexo-generator-archive": "^0.1.0",
