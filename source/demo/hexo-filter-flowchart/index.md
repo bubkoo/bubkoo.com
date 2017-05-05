@@ -14,6 +14,8 @@ npm install --save hexo-filter-flowchart
 
 ## 示例
 
+### flow
+
 ```flow
 st=>start: Start|past:>http://www.google.com[blank]
 e=>end: End:>http://www.google.com
@@ -30,6 +32,14 @@ cond(yes, right)->c2
 cond(no)->sub1(left)->op1
 c2(yes)->io->e
 c2(no)->op2->e
+```
+
+### sequence
+
+```sequence
+Alice->Bob: Hello Bob, how are you?
+Note right of Bob: Bob thinks
+Bob-->Alice: I am good thanks!
 ```
 
 ## License
