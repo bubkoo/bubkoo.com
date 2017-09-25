@@ -8,25 +8,28 @@ install:
   - npm install
 
 before_script:
-  - git config --global user.name    "bubkoo"
-  - git config --global user.email   "bubkoo@163.com"
+  - git config --global user.name  "bubkoo"
+  - git config --global user.email "bubkoo.wy@gmail.com"
   - git config --global push.default simple
   # themes
   - git clone https://github.com/bubkoo/hexo-theme-formula.git themes/formula
-  # - git clone https://github.com/bubkoo/hexo-theme-flight.git  themes/flight
+  - git clone https://github.com/bubkoo/hexo-theme-flight.git  themes/flight
   # deploy
-  - git clone https://$GH_TOKEN@github.com/bubkoo/bubkoo.github.com.git .deploy_git
+  - git clone https://${GH_TOKEN}@${GH_REF} ${DIR}
 
 script:
   - hexo clean
   - hexo generate
-  - make update
-  - make deploy
-
-branches:
-  only:
-    - master
+  - cd ${DIR} && git rm -rf * && cd ../
+  - cp -PR public/* ${DIR}
+  - cd ${DIR}
+  - git add -A .
+  - MESSAGE=` date +\ %Y-%m-%d\ %H:%M:%S`
+  - git commit -m "Updated by travis-ci:${MESSAGE}"
+  - git push
 
 env:
   global:
-    secure: i7ljgcx7og/9bSVC+G3DeOG0Hu8FA6MS5aoaqS+iD+yqgFAy+IwUYS2QjuJN+fs4J4m5XQyOT1i6ScbV66YK/K9ymRHoSuKdZiYduWewIBD4SoY06GTBGB9kEEKc8HPoT4V8R9yxkWTwpYK1HVN4asa1B85hDNdvvUo1sTRLnF8=
+    - DIR: .deploy_git
+    - GH_REF: github.com/bubkoo/bubkoo.github.com.git
+    - secure: i7ljgcx7og/9bSVC+G3DeOG0Hu8FA6MS5aoaqS+iD+yqgFAy+IwUYS2QjuJN+fs4J4m5XQyOT1i6ScbV66YK/K9ymRHoSuKdZiYduWewIBD4SoY06GTBGB9kEEKc8HPoT4V8R9yxkWTwpYK1HVN4asa1B85hDNdvvUo1sTRLnF8=
